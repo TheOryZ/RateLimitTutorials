@@ -32,8 +32,9 @@ namespace RateLimitAPI
             services.AddMemoryCache();
             services.Configure<IpRateLimitOptions>(Configuration.GetSection("IpRateLimiting"));
             services.Configure<IpRateLimitPolicies>(Configuration.GetSection("IpRateLimitPolicies"));
-            services.AddSingleton<IIpPolicyStore, MemoryCacheIpPolicyStore>();
-            services.AddSingleton<IRateLimitCounterStore, MemoryCacheRateLimitCounterStore>();
+            services.AddInMemoryRateLimiting();
+            //services.AddSingleton<IIpPolicyStore, MemoryCacheIpPolicyStore>();
+            //services.AddSingleton<IRateLimitCounterStore, MemoryCacheRateLimitCounterStore>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
 
